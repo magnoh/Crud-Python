@@ -6,11 +6,10 @@ from app.models import Cursos
 from django.http import HttpResponse
 
 # Create your views here.
-
-
 def home(request):
 
     return render(request, 'home.html')
+
 
 
 # Formulario de Cadastro de Usuario
@@ -40,9 +39,9 @@ def form(request):
     data['form'] = CursosForm()
     return render(request, 'form.html', data)
 
+
+
 # Adiciona os dados na tabela
-
-
 def sava(request):
     form = CursosForm(request.POST or None)
     print(form.is_valid())
@@ -52,18 +51,18 @@ def sava(request):
     else:
         return HttpResponse(form.errors)
 
+
+
 # Campo de edição dos cursos
-
-
 def edit(request, pk):
     data = {}
     data['db'] = Cursos.objects.get(pk=pk)
     data['form'] = CursosForm(instance=data['db'])
     return render(request, 'form.html', data)
 
+
+
 # Salvar os cursos editados
-
-
 def update(request, pk):
     data = {}
     data['db'] = Cursos.objects.get(pk=pk)
@@ -72,14 +71,16 @@ def update(request, pk):
         form.save()
         return redirect('/dashboard/')
 
+
+# Deleta os cursos
 def delete(request, pk):
     db = Cursos.objects.get(pk=pk)
     db.delete()
     return redirect('/dashboard/')
 
+
+
 # Processa o Login
-
-
 def dolog(request):
     data = {}
     user = authenticate(
@@ -92,9 +93,8 @@ def dolog(request):
         data['class'] = 'alert-danger'
         return render(request, 'home.html', data)
 
+
 # Página inicial do dashboard
-
-
 def dashboard(request):
     data = {}
     data['db'] = Cursos.objects.all()
