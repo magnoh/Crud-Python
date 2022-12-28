@@ -1,0 +1,64 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% if request.user.is_authenticated %}
+<nav class="navbar navbar-default bg-dark navbar-fixed-top">
+  <div class="navbar-collapse container-fluid">
+    <ul class="nav navbar-light">
+      <li class="navbar-light"><a href="/dashboard/"></a></li>
+    </ul>
+    <ul class="nav navbar-light">
+      <li class="navbar-right"><a href="/logouts/">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<section class="w-100 p-3 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-10">
+        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+            <h2 class="text-uppercase text-center mb-5">Lista de cursos</h2>
+          </div>
+          <div class="col-8 m-auto pt-3 pb-2 text-center">
+            <table class="table table-dark table-striped">
+              <thead class="table-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Cursos</th>
+                  <th scope="col">Horas</th>
+                  <th scope="col">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for dbs in db %}
+                <tr>
+                  <th>{{dbs.id}}</th>
+                  <td>{{dbs.cursos}}</td>
+                  <td>{{dbs.horas}}</td>
+                  <td>
+                    <a href="/edit/{{dbs.id}}/" class="btn btn-primary btnEdit">Editar</a>
+                    <a href="/delete/{{dbs.id}}/" class="btn btn-danger btnDel">Deletar</a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+
+            </table>
+
+            <div class="col-8 m-auto pt-3 pb-2 text-center">
+              <a href="/form" class="btn btn-success">Adicionar Curso</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% load static %}
+<script src="{% static 'javascript.js' %}"></script>
+{% else %}
+Você não tem acesso a essa área!
+{% endif %}
+
+{% endblock %}

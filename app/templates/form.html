@@ -1,0 +1,46 @@
+{%extends 'main.html'%}
+
+{% block content %}
+{% if request.user.is_authenticated %}
+<nav class="navbar navbar-default bg-dark navbar-fixed-top">
+    <div class="navbar-collapse container-fluid">
+        <ul class="nav navbar-light">
+            <li class="navbar-light"><a href="/dashboard/">Home</a></li>
+        </ul>
+        <ul class="nav navbar-light">
+            <li class="navbar-right"><a href="/logouts/">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section class="vh-100 gradient-custom">
+    <div class="container-fluid py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+                        <h2 class="text-uppercase text-center mb-5">Adicionar Curso</h2>
+                        <div id="result"></div>
+                        <form name="form" id="form" action="{% if db %}/update/{{db.id}}/{%else%}/sava/{% endif %}"
+                            method="post">
+                            {% csrf_token %}
+                            <!--{{form.as_p}}-->
+                            <div class="form-group mt-4">Curso: {{form.cursos}}</div>
+                            <div class="form-group mt-4">Horas: {{form.horas}}</div>
+                            <div class="col-8 m-auto pt-4 pb-2 text-center">
+                                <input type="submit" class="btn btn-success" value="Salvar">
+                                <a href="/dashboard/" class="btn btn-primary">Voltar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>              
+</section>
+{% load static %}
+<script src="{% static 'javascript.js' %}"></script>
+{% else %}
+Você não tem acesso a essa área!
+{% endif %}
+{% endblock %}

@@ -1,0 +1,51 @@
+{%extends 'main.html'%}
+
+{% block content %}
+<title>Login</title>
+
+<section class="w-100 py-5 gradient-custom">
+   <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card bg-dark text-white" style="border-radius: 1rem;">
+               <div class="card-body p-5 text-center">
+                  <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                  <p class="text-white-50 mb-5">Please enter your login and password!</p>
+                  <form name="formPainel" id="formPainel" method="post" action="/dolog/">
+                     <div class="col-6 mt-4 m-auto">
+                        {% if msg %}
+
+                        <div class="alert {{class}}">
+                           {{msg}}
+
+                        </div>
+                        {% endif %}
+
+                        {% csrf_token %}
+
+                        <div class="form-outline mb-4">
+                           <input class="form-control mt-4" type="text" name="user" id="user"
+                              placeholder="Nome do Usuário:">
+
+                        </div>
+
+                        <div class="form-outline mb-4">
+                           <input class="form-control mt-4" type="password" name="password" id="password"
+                              placeholder="Senha:">
+                           <input class="btn btn-primary mt-4" type="submit" value="Entrar">
+
+                        </div>
+
+                        <!-- Register buttons -->
+                        <div class="text-center">
+                           <p>Not a member? <a href="/create">Register</a></p>
+
+                        </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+{% endblock %}

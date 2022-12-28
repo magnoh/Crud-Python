@@ -1,0 +1,36 @@
+{%extends 'main.html'%}
+
+{% block content %}
+<section class="vh-100 py-1 width: 120px; gradient-custom">
+  <div class="container-fluid py-1 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+            <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+            <form name="form-users" id="formUsers" method="post" action="/store/">
+              <div class="col-6 mt-4 m-auto">
+                {% if msg %}
+                <div class="alert {{class}}">
+                  {{msg}}
+                  {% endif %}
+                  {% csrf_token %}
+
+                  <input class="form-control mt-4" type="text" name="name" id="name" placeholder="Nome:">
+                  <input class="form-control mt-4" type="text" name="user" id="user" placeholder="Nome do Usuário:">
+                  <input class="form-control mt-4" type="password" name="password" id="password" placeholder="Senha:">
+                  <input class="form-control mt-4" type="password" name="password-conf" id="password-conf"
+                    placeholder="Repita a senha:">
+                  <input class="form-control mt-4" type="email" name="email" id="email" placeholder="Email:">
+                  <input class="btn btn-primary mt-4" type="submit" value="Cadastrar">
+                  <a href="/" class="btn btn-secondary mt-4">Voltar</a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
