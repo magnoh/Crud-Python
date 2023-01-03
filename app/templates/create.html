@@ -16,12 +16,12 @@
                   {% endif %}
                   {% csrf_token %}
 
-                  <input class="form-control mt-4" type="text" name="name" id="name" placeholder="Nome:">
-                  <input class="form-control mt-4" type="text" name="user" id="user" placeholder="Nome do Usuário:">
-                  <input class="form-control mt-4" type="password" name="password" id="password" placeholder="Senha:">
+                  <input class="form-control mt-4" type="text" name="name" id="name"  maxlength="45" placeholder="Nome:" required>
+                  <input class="form-control mt-4" type="text" name="user" id="user"  maxlength="45" placeholder="Nome do Usuário:" required>
+                  <input class="form-control mt-4" type="password" name="password" id="password" placeholder="Senha:" minlenght="6" required>
                   <input class="form-control mt-4" type="password" name="password-conf" id="password-conf"
-                    placeholder="Repita a senha:">
-                  <input class="form-control mt-4" type="email" name="email" id="email" placeholder="Email:">
+                    placeholder="Repita a senha:" minlenght="6" required>
+                  <input class="form-control mt-4" type="email" name="email" id="email" onblur="validateEmail(this);" placeholder="Email:"required>
                   <input class="btn btn-primary mt-4" type="submit" value="Cadastrar">
                   <a href="/" class="btn btn-secondary mt-4">Voltar</a>
                 </div>

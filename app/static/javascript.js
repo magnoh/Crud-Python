@@ -81,37 +81,68 @@
 })
     (window, document);
 
-(function (win, doc) {
-    "use strict";
-    if (doc.querySelector('#formUsers')) {
-        let formUsers = doc.querySelector('#formUsers');
-        formUsers.addEventListener('submit', function (event) {
-            event.preventDefault()
-            const data = new FormData(event.target)
-            let formulario_valido = true
-            let form_campos = []
-            let form_campos_preenchidos = []
+// (function (win, doc) {
+//     "use strict";
+//     const submit = document.getElementById("submit");
 
-            data.forEach(function(value, key){
-                if (value == ''){
-                    form_campos[key] = value
-                    formulario_valido = false
-                }else{
-                    form_campos_preenchidos[key] = value
-                }
-            })
+//     submit.addEventListener("click", validate);
 
-            console.log(form_campos_preenchidos['name'])
+//     function validate(e) {
+//         e.preventDefault();
 
-            if (formulario_valido){
-                alert('Formulário enviado')
-            }
+//         const firstNameField = document.getElementById("name", "user", "password", "password-conf", "email");
+//         let valid = true;
+        
 
-        })
-    }
-    ;
-}
+//         if (!firstNameField.value) {
+//             const nameError = document.getElementById("user");
+//             nameError.classList.add("visible");
+//             firstNameField.classList.add("invalid");
+//             nameError.setAttribute("aria-hidden", false);
+//             nameError.setAttribute("aria-invalid", true);
+//         }
+//         return valid;
+//     }
+// })(window, document);
 
+function isValidEmail(input) {
+    const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    return input.match(validRegex) !== null;
+  
+  }
+  
+  function validateEmail(el) {
+      (isValidEmail(el.value))
+      ? console.log('E-mail valido')
+      : console.log('E-mail invalido');
+  }
+// (function (win, doc) {
+//     "use strict";
+//     if (doc.querySelector('#formUsers')) {
+//         let formUsers = doc.querySelector('#formUsers');
+//         formUsers.addEventListener('submit', function (event) {
+//             event.preventDefault()
+//             const data = new FormData(event.target)
+//             let formulario_valido = true
+//             let form_campos = []
+//             let form_campos_preenchidos = []
 
-)
-    (window, document);
+//             data.forEach(function(value, key){
+//                 if (value == ''){
+//                     form_campos[key] = value
+//                     formulario_valido = false
+//                 }else{
+//                     form_campos_preenchidos[key] = value
+//                 }
+//             })
+
+//             console.log(form_campos_preenchidos['name'])
+
+//             if (formulario_valido){
+//                 alert('Formulário enviado')
+//             }
+
+//         })
+//     }
+//     ;
+// })(window, document);
